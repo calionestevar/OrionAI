@@ -1,4 +1,3 @@
-```markdown
 # ai-castle — Chuck-Style AI Oversight for Games
 
 **"Yeah, we’ll be there in five… or thirty."**
