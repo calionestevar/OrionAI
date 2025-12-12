@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  orionai:
+    build: .
+    container_name: orionai-service
+    environment:
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
+      - GITHUB_REPO=${GITHUB_REPO}
+      - JIRA_API_TOKEN=${JIRA_API_TOKEN}
+      - JIRA_URL=${JIRA_URL}
+      - JIRA_PROJECT=${JIRA_PROJECT}
+    volumes:
+      - ./Config:/app/Config:ro
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - orion-network
+
+  # Optional: Add a simple REST API wrapper
+  orionai-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: orionai-api
+    ports:
+      - "8000:8000"
+    environment:
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
+      - GITHUB_REPO=${GITHUB_REPO}
+      - JIRA_API_TOKEN=${JIRA_API_TOKEN}
+      - JIRA_URL=${JIRA_URL}
+    volumes:
+      - ./Config:/app/Config:ro
+      - ./logs:/app/logs
+    depends_on:
+      - orionai
+    restart: unless-stopped
+    networks:
+      - orion-network
+
+networks:
+  orion-network:
+    driver: bridge

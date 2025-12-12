@@ -1,0 +1,30 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "OrionAI - Chuck-Style AI Validation",
+  "Description": "Industry-agnostic AI validation and monitoring system. Named after Project Orion from the TV series Chuck. Provides real-time validation for AI decisions with bias detection, PII sanitization, and adversarial filtering.",
+  "Category": "AI Validation",
+  "CreatedBy": "Your Name",
+  "CreatedByURL": "https://github.com/calionestevar/OrionAI",
+  "DocsURL": "https://github.com/calionestevar/OrionAI/wiki",
+  "MarketplaceURL": "",
+  "SupportURL": "https://github.com/calionestevar/OrionAI/issues",
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": false,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "OrionAI",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Linux",
+        "Mac"
+      ]
+    }
+  ],
+  "Plugins": []
+}

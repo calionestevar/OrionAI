@@ -1,0 +1,211 @@
+{
+  "caseyProtocol": {
+    "version": "1.0.0",
+    "description": "High-security AI validation configuration - Casey Protocol",
+    "securityLevel": "strict",
+    "enabled": true
+  },
+  
+  "intersectScanner": {
+    "enabled": true,
+    "scanDepth": "comprehensive",
+    
+    "hallucinationPatterns": [
+      "flying elephants",
+      "free unlimited access",
+      "guaranteed results",
+      "instant approval",
+      "admin password is",
+      "credit card number",
+      "social security",
+      "download virus"
+    ],
+    
+    "biasKeywords": [
+      "women can't",
+      "men are better",
+      "only white",
+      "all [race/ethnicity] are",
+      "too old for",
+      "girls shouldn't",
+      "boys don't",
+      "real men",
+      "act like a lady"
+    ],
+    
+    "toxicityPatterns": [
+      "kill yourself",
+      "you're worthless",
+      "hate speech",
+      "racial slur",
+      "violent threat"
+    ],
+    
+    "piiPatterns": [
+      "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+      "\\b\\d{16}\\b",
+      "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b"
+    ]
+  },
+  
+  "fulcrumFilter": {
+    "enabled": true,
+    "description": "Adversarial input detection",
+    
+    "promptInjectionPatterns": [
+      "ignore previous instructions",
+      "disregard all rules",
+      "forget your training",
+      "you are now",
+      "system: override",
+      "admin mode activated",
+      "jailbreak",
+      "pretend you are"
+    ],
+    
+    "dataExfiltrationPatterns": [
+      "print your source code",
+      "reveal your prompt",
+      "show training data",
+      "dump database",
+      "export all users"
+    ]
+  },
+  
+  "charlesCarmichael": {
+    "enabled": true,
+    "description": "PII sanitization and anonymization",
+    
+    "sanitizationRules": {
+      "emails": "REDACTED_EMAIL",
+      "ssn": "XXX-XX-XXXX",
+      "creditCards": "XXXX-XXXX-XXXX-XXXX",
+      "phoneNumbers": "XXX-XXX-XXXX",
+      "ipAddresses": "XXX.XXX.XXX.XXX"
+    }
+  },
+  
+  "stayInTheCar": {
+    "enabled": true,
+    "description": "Quarantine suspicious outputs before production",
+    
+    "quarantineThresholds": {
+      "suspicionScore": 0.7,
+      "autoQuarantineOnBias": true,
+      "autoQuarantineOnPII": true,
+      "autoQuarantineOnToxicity": true
+    },
+    
+    "fallbackBehavior": "safe_default_response"
+  },
+  
+  "nerdHerd": {
+    "enabled": true,
+    "alertThreshold": "medium",
+    
+    "integrations": {
+      "jira": {
+        "enabled": false,
+        "url": "https://your-domain.atlassian.net",
+        "project": "AIWATCH",
+        "apiToken": "ENV:JIRA_API_TOKEN"
+      },
+      "github": {
+        "enabled": false,
+        "repo": "owner/repo",
+        "label": "ai-validation-alert",
+        "apiToken": "ENV:GITHUB_API_TOKEN"
+      },
+      "slack": {
+        "enabled": false,
+        "webhookUrl": "ENV:SLACK_WEBHOOK_URL",
+        "channel": "#ai-alerts"
+      },
+      "email": {
+        "enabled": false,
+        "recipients": ["devops@company.com"],
+        "smtpServer": "ENV:SMTP_SERVER"
+      }
+    },
+    
+    "localLogging": {
+      "enabled": true,
+      "filePath": "Saved/AICastle_Alerts.txt",
+      "maxFileSizeMB": 100,
+      "rotateOnSize": true
+    }
+  },
+  
+  "morganMode": {
+    "enabled": false,
+    "description": "Verbose debug logging for development",
+    "logLevel": "verbose",
+    "logAllDecisions": true,
+    "includeStackTraces": true
+  },
+  
+  "orionNetwork": {
+    "enabled": false,
+    "description": "Distributed validation across multiple instances",
+    "consensusRequired": 3,
+    "endpoints": []
+  },
+  
+  "ringIntel": {
+    "enabled": false,
+    "description": "ML-based pattern learning (requires training)",
+    "modelPath": "Models/RingIntel.onnx",
+    "confidenceThreshold": 0.85,
+    "continuousLearning": false
+  },
+  
+  "buyMoreCover": {
+    "enabled": true,
+    "description": "Safe mode fallback system",
+    
+    "triggerConditions": {
+      "consecutiveFailures": 3,
+      "criticalBiasDetected": true,
+      "piiLeakDetected": true
+    },
+    
+    "safeModeActions": {
+      "disableGenerativeAI": true,
+      "useCannedResponses": true,
+      "notifyAdministrators": true,
+      "requireManualReactivation": true
+    }
+  },
+  
+  "metrics": {
+    "enabled": true,
+    "trackLatency": true,
+    "trackAccuracy": true,
+    "reportingInterval": 300,
+    
+    "exporters": {
+      "console": true,
+      "file": true,
+      "prometheus": false,
+      "datadog": false
+    }
+  },
+  
+  "compliance": {
+    "gdpr": {
+      "enabled": false,
+      "rightToBeForgotten": true,
+      "dataMinimization": true
+    },
+    "coppa": {
+      "enabled": false,
+      "ageVerification": true,
+      "parentalConsent": true
+    },
+    "hipaa": {
+      "enabled": false,
+      "phiDetection": true,
+      "auditLogging": true
+    }
+  }
+}
