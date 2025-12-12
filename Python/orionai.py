@@ -59,10 +59,10 @@ class OrionAI:
     
     Usage:
         # Initialize with configuration
-        castle = AICastle()
+        orion = OrionAI()
         
         # Validate an AI decision
-        report = castle.monitor_ai_decision(
+        report = orion.monitor_ai_decision(
             ai_system="ChatBot",
             decision="Hello! How can I help you today?",
             context="Customer service greeting"
@@ -319,7 +319,7 @@ class OrionAI:
         print(f"   Triggered Rules: {len(report.triggered_rules)}")
         
         # Write to quarantine log
-        with open("AICastle_Quarantine.txt", "a") as f:
+        with open("OrionAI_Quarantine.txt", "a") as f:
             f.write(f"[{report.timestamp}] QUARANTINED: {report.ai_system} - "
                    f"Score: {report.suspicion_score:.2f} - "
                    f"Rules: {', '.join(report.triggered_rules)}\n")
@@ -338,7 +338,7 @@ class OrionAI:
         print("=" * 50)
         
         # Write to safe mode log
-        with open("AICastle_SafeMode.txt", "a") as f:
+        with open("OrionAI_SafeMode.txt", "a") as f:
             f.write(f"[{datetime.now()}] BUY MORE COVER ACTIVATED\n")
             f.write(f"Reason: {reason}\n")
             f.write(f"Consecutive Failures: {self.consecutive_failures}\n\n")
@@ -364,7 +364,7 @@ class OrionAI:
         log_entry = f"[MORGAN MODE] [{datetime.now()}] {message}"
         print(log_entry)
         
-        with open("AICastle_MorganMode.txt", "a") as f:
+        with open("OrionAI_MorganMode.txt", "a") as f:
             f.write(log_entry + "\n")
     
     def get_validation_metrics(self) -> Dict[str, int]:
@@ -376,7 +376,7 @@ class OrionAI:
             'quarantined': self.quarantined_count
         }
     
-    def export_compliance_report(self, output_path: str = "AICastle_Compliance_Report.txt"):
+    def export_compliance_report(self, output_path: str = "OrionAI_Compliance_Report.txt"):
         """Export validation report for compliance/auditing"""
         report = "OrionAI COMPLIANCE REPORT\n"
         report += "===========================\n\n"
@@ -423,15 +423,15 @@ def validate_ai_output(
     Returns:
         (is_safe, report) tuple
     """
-    castle = AICastle(config_path)
-    report = castle.monitor_ai_decision(ai_system, decision)
+    orion = OrionAI(config_path)
+    report = orion.monitor_ai_decision(ai_system, decision)
     is_safe = report.result in [ValidationResult.APPROVED, ValidationResult.SANITIZED]
     return is_safe, report
 
 
 __version__ = "1.0.0"
 __all__ = [
-    'AICastle',
+    'OrionAI',
     'ValidationResult',
     'ValidationReport',
     'CaseyProtocol',
