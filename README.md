@@ -1,5 +1,7 @@
 # 🎬 OrionAI — Chuck-Style AI Oversight
 
+![OrionAI Banner](.github/banner.jpg)
+
 **"Guys, I know kung fu... and AI validation."**
 
 Industry-agnostic AI validation, monitoring, and safety system demonstrating AI validation expertise across gaming, healthcare, finance, e-commerce, and customer service industries.
