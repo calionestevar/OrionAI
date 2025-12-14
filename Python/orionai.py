@@ -6,6 +6,7 @@ Industry-agnostic AI validation, monitoring, and safety system.
 """
 
 import json
+import os
 import re
 from datetime import datetime
 from enum import Enum
@@ -37,8 +38,6 @@ class RingIntel:
         self.model_name = model_name or self.TOXICITY_MODELS[0]
 
         # Check if ML is disabled via environment variable (for testing)
-        import os
-
         if os.environ.get("ORIONAI_DISABLE_ML") == "1":
             print("[!] Ring Intel disabled - ML disabled via environment variable")
             return
@@ -476,7 +475,7 @@ class OrionAI:
         self.safe_mode_active = True
 
         print("=" * 50)
-        print("🛡️  BUY MORE COVER ACTIVATED")
+        print("[!] BUY MORE COVER ACTIVATED")
         print(f"Reason: {reason}")
         print("ALL AI SYSTEMS LIMITED")
         print("=" * 50)
@@ -546,6 +545,11 @@ class OrionAI:
                 report += "Rules Triggered:\n"
                 for rule in qr.triggered_rules:
                     report += f"  - {rule}\n"
+
+        # Create directory if it doesn't exist
+        output_dir = os.path.dirname(output_path)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
 
         with open(output_path, "w") as f:
             f.write(report)
