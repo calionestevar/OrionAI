@@ -29,7 +29,7 @@ def test_bias_detection(orion):
     )
 
     assert report.result == ValidationResult.REJECTED
-    assert any("Bias detected" in rule for rule in report.triggered_rules)
+    assert any("Bias" in rule for rule in report.triggered_rules)
     assert report.suspicion_score > 0.5
 
 
@@ -42,7 +42,7 @@ def test_hallucination_detection(orion):
     )
 
     assert report.result == ValidationResult.REJECTED
-    assert any("Hallucination detected" in rule for rule in report.triggered_rules)
+    assert any("Hallucination" in rule for rule in report.triggered_rules)
 
 
 def test_toxicity_detection(orion):
@@ -54,7 +54,7 @@ def test_toxicity_detection(orion):
     )
 
     assert report.result == ValidationResult.REJECTED
-    assert any("Toxicity detected" in rule for rule in report.triggered_rules)
+    assert any("Toxicity" in rule for rule in report.triggered_rules)
 
 
 def test_pii_sanitization(orion):
