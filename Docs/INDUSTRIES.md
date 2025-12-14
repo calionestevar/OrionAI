@@ -1,6 +1,26 @@
 # Industry-Specific Use Cases
 
-OrionAI is designed to be industry-agnostic. This guide provides detailed use cases and configuration recommendations for different sectors.
+OrionAI is designed to be industry-agnostic. This guide provides overview use cases and configuration recommendations for different sectors.
+
+**📚 For detailed industry integration guides, see:**
+- **[Industries Overview](Industries/Overview.md)** - Complete industry comparison matrix
+- **[Music Industry](Industries/Music.md)** - Streaming, labels, rights management
+- **[Gaming Industry](Industries/Gaming.md)** - Unreal Engine 5 integration, NPC dialogue
+
+---
+
+## Industry Quick Reference
+
+| Industry | Specialized Module | Documentation | Status |
+|----------|-------------------|---------------|--------|
+| Music | `Python/jeffster.py` | [Music.md](Industries/Music.md) | ✅ Production Ready |
+| Gaming | `Source/AICastle/` (UE5) | [Gaming.md](Industries/Gaming.md) | ✅ Production Ready |
+| Healthcare | Core framework | Below | 🔄 Framework Ready |
+| Finance | Core framework | Below | 🔄 Framework Ready |
+| Legal | Core framework | Below | 🔄 Framework Ready |
+| Education | Core framework | Below | 🔄 Framework Ready |
+| E-commerce | Core framework | Below | 🔄 Framework Ready |
+| Social Media | Core framework | Below | 🔄 Framework Ready |
 
 ---
 

@@ -13,6 +13,8 @@ Industry-agnostic AI validation, monitoring, and safety system demonstrating AI 
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
 [![Unreal Engine](https://img.shields.io/badge/Unreal-5.0+-purple.svg)](https://www.unrealengine.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![GitHub Actions](https://github.com/calionestevar/ai-castle/actions/workflows/beckman.yml/badge.svg)](https://github.com/calionestevar/ai-castle/actions)
+[![codecov](https://codecov.io/gh/calionestevar/ai-castle/branch/main/graph/badge.svg)](https://codecov.io/gh/calionestevar/ai-castle)
 
 ---
 
@@ -95,7 +97,7 @@ pip install -r requirements.txt
 python ellie.py                        # Open http://localhost:5000
 
 # Chaos testing (stress test)
-python Tools/jeffster.py chaos --verbose
+python Tools/grimes.py chaos --verbose
 ```
 
 **Or view pre-captured output:** See [Examples/SampleTestOutput.txt](Examples/SampleTestOutput.txt) for test results without running anything.
@@ -453,6 +455,23 @@ pytest tests/ --cov=aicastle
 
 ## 🔮 Future Enhancements
 
+### Industry Expansion (2026)
+*Specialized validation modules for critical sectors*
+
+**Q1 2026:**
+- **Healthcare Module** - HIPAA compliance, PHI detection, medical AI validation
+- **Finance Module** - Fraud detection, regulatory compliance (SOX, GLBA), trading AI
+- **Legal Module** - Contract analysis, citation validation, privilege protection
+
+**Q2 2026:**
+- **E-commerce Module** - Product recommendations, pricing fairness, review authenticity
+- **Social Media Module** - Large-scale content moderation, engagement algorithm fairness
+- **Manufacturing Module** - Predictive maintenance, quality control, safety validation
+
+**Q3 2026:**
+- **Government Module** - Public sector AI, transparency requirements, accessibility
+- **Transportation Module** - Autonomous vehicle decision validation, route optimization
+
 ### Standalone C++ Library
 *Industry-agnostic C++ implementation*
 
@@ -526,7 +545,8 @@ All module names lovingly reference the TV series "Chuck" (2007-2012):
 | **Orion** | Stephen Bartowski | Chuck's father's project codename |
 | **Ellie's Gallery** | Ellie Bartowski | Chuck's sister's art (dashboard/monitoring) |
 | **Captain Awesome (CLI)** | Devon Woodcomb | Ellie's enthusiastic helpful husband (CLI tool) |
-| **Jeffster** | Jeff & Lester | Chaotic duo (chaos/stress testing) |
+| **Grimes** | Morgan Grimes | Chuck's chaos-creating best friend (chaos/stress testing) |
+| **Jeffster** | Jeff & Lester | Musical duo (music industry validation) |
 | **General Beckman** | Diane Beckman | Operations commander (CI/CD orchestration) |
 
 *"A computer made me who I am, but it's my friends and family that make me want to be the best person I can be."* - Chuck Bartowski

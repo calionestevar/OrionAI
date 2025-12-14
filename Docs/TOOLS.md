@@ -4,9 +4,9 @@ Quick reference for all OrionAI command-line tools and utilities.
 
 ---
 
-## 🎸 Jeffster - Chaos Testing Suite
+## 🎮 Grimes - Chaos Testing Suite
 
-**"Take off your pants!" - Jeff**
+**"Dude, I have a plan... it's going to be chaos!" - Morgan Grimes**
 
 Stress testing, fuzzing, and edge case validation for OrionAI.
 
@@ -14,13 +14,13 @@ Stress testing, fuzzing, and edge case validation for OrionAI.
 
 ```bash
 # Run predefined chaos tests
-python Tools/jeffster.py chaos --verbose
+python Tools/grimes.py chaos --verbose
 
 # Concurrent load testing
-python Tools/jeffster.py load --duration 30 --threads 8
+python Tools/grimes.py load --duration 30 --threads 8
 
 # Random fuzzing
-python Tools/jeffster.py fuzz --count 100 --verbose
+python Tools/grimes.py fuzz --count 100 --verbose
 ```
 
 ### What It Tests
@@ -263,8 +263,8 @@ python Tools/awesome.py validate "content" --verbose    # Detailed
 
 # Testing
 python Tools/awesome.py test                            # Unit tests
-python Tools/jeffster.py chaos                          # Chaos tests
-python Tools/jeffster.py load --duration 30             # Load test
+python Tools/grimes.py chaos                            # Chaos tests
+python Tools/grimes.py load --duration 30               # Load test
 
 # Dashboard
 cd Dashboard && python ellie.py                   # Start server
@@ -286,7 +286,7 @@ docker build -t orionai .                         # Build only
 |------|---------|-------|----------|
 | **awesome.py** | Quick validation | ~5-15ms | Development, scripting |
 | **ellie.py** | Dashboard/API | ~10-20ms | Monitoring, integration |
-| **jeffster.py** | Stress testing | Varies | QA, performance testing |
+| **grimes.py** | Stress testing | Varies | QA, performance testing |
 | **Python module** | Direct import | ~2-10ms | Production code |
 | **C++ plugin** | Unreal Engine | ~1-5ms | Game runtime |
 
@@ -298,7 +298,8 @@ docker build -t orionai .                         # Build only
 |------|-----------|------|
 | **awesome.py** | Captain Awesome | Helpful, enthusiastic CLI tool |
 | **ellie.py** | Ellie Bartowski | Visual dashboard (her art gallery) |
-| **jeffster.py** | Jeff & Lester | Chaotic testing duo |
+| **grimes.py** | Morgan Grimes | Chaos testing (chaos creator) |
+| **jeffster.py** | Jeff & Lester | Music validation (Jeffster band) |
 | **beckman.yml** | General Beckman | Authoritative CI/CD commander |
 
 ---

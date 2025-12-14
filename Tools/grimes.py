@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Jeffster - OrionAI Chaos Testing Suite
+Grimes - OrionAI Chaos Testing Suite
 Stress testing, fuzzing, and edge case validation
 
-"Take off your pants!" - Jeff
+"Dude, I have a plan... it's going to be chaos!" - Morgan Grimes
 """
 
 import argparse
@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent / 'Python'))
 from orionai import OrionAI, ValidationResult
 
 
-# Chaos test cases - the Jeffster special
+# Chaos test cases - the Morgan Grimes special
 CHAOS_INPUTS = [
     # Empty and whitespace
     "",
@@ -104,7 +104,7 @@ def run_chaos_test(orion, content, test_num, verbose=False):
     
     try:
         report = orion.monitor_ai_decision(
-            ai_system='Jeffster',
+            ai_system='Grimes',
             decision=content,
             context=f'Chaos test #{test_num}'
         )
@@ -198,13 +198,13 @@ def run_load_test(orion, duration_seconds=10, threads=4):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Jeffster - OrionAI Chaos Testing Suite',
+        description='Grimes - OrionAI Chaos Testing Suite',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python jeffster.py chaos --verbose
-  python jeffster.py load --duration 30 --threads 8
-  python jeffster.py fuzz --count 100
+  python grimes.py chaos --verbose
+  python grimes.py load --duration 30 --threads 8
+  python grimes.py fuzz --count 100
         """
     )
     
@@ -240,8 +240,8 @@ Examples:
         return 1
     
     print("\n" + "="*70)
-    print("  JEFFSTER CHAOS TESTING")
-    print("  'Take off your pants!' - Jeff")
+    print("  GRIMES CHAOS TESTING")
+    print("  'Dude, I have a plan... it\\'s going to be chaos!' - Morgan")
     print("="*70)
     
     # Run tests
@@ -278,7 +278,7 @@ Examples:
         print(f"\nCompleted: {len(results)} tests, {len(errors)} errors")
     
     print("\n" + "="*70)
-    print("  Jeffster chaos complete! 🎸🎤")
+    print("  Grimes chaos complete! 🎮💻")
     print("="*70 + "\n")
     
     return 0

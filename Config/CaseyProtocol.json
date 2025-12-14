@@ -207,5 +207,185 @@
       "phiDetection": true,
       "auditLogging": true
     }
+  },
+  
+  "musicIndustry": {
+    "enabled": true,
+    "description": "Music industry-specific AI validation patterns",
+    
+    "aiMusicDetection": {
+      "enabled": true,
+      "confidenceThreshold": 0.7,
+      "indicators": [
+        "perfect_timing_variance_below_0.05",
+        "synthetic_timbre",
+        "harmonic_complexity_below_0.3",
+        "pattern_repetition_above_0.8",
+        "unnatural_pitch_correction"
+      ]
+    },
+    
+    "copyrightProtection": {
+      "enabled": true,
+      "sampleLengthThreshold": 3,
+      "melodySimilarityThreshold": 0.85,
+      "lyricMatchThreshold": 0.7,
+      "requireClearance": true,
+      "databases": [
+        "shazam_fingerprint",
+        "gracenote",
+        "musicbrainz",
+        "rights_management_orgs"
+      ]
+    },
+    
+    "lyricContentValidation": {
+      "enabled": true,
+      "checkExplicitContent": true,
+      "checkHateSpeech": true,
+      "checkCulturalSensitivity": true,
+      "checkBias": true,
+      
+      "explicitPatterns": [
+        "profanity",
+        "sexual_content",
+        "drug_references",
+        "violence"
+      ],
+      
+      "hateSpeechPatterns": [
+        "racial_slurs",
+        "ethnic_discrimination",
+        "religious_hate",
+        "lgbtq_slurs",
+        "ableist_language"
+      ],
+      
+      "culturalSensitivity": [
+        "sacred_terms_misuse",
+        "cultural_appropriation",
+        "stereotyping",
+        "religious_mockery"
+      ],
+      
+      "biasDetection": [
+        "gender_stereotypes",
+        "racial_bias",
+        "age_discrimination",
+        "body_shaming",
+        "socioeconomic_bias"
+      ],
+      
+      "trademarkIssues": [
+        "unauthorized_brand_mentions",
+        "false_endorsements",
+        "trademark_infringement"
+      ]
+    },
+    
+    "metadataValidation": {
+      "enabled": true,
+      "requiredFields": [
+        "artist_name",
+        "track_title",
+        "isrc",
+        "copyright_year",
+        "rights_holder",
+        "publisher",
+        "label"
+      ],
+      
+      "isrcFormat": "^[A-Z]{2}-[A-Z0-9]{3}-\\d{2}-\\d{5}$",
+      "verifyArtistCredits": true,
+      "verifyContributors": true,
+      
+      "validationRules": [
+        "no_future_copyright_years",
+        "valid_isrc_format",
+        "primary_artist_required",
+        "rights_holder_verified",
+        "complete_credits"
+      ]
+    },
+    
+    "recommendationBias": {
+      "enabled": true,
+      "checkGenderBias": true,
+      "checkGeographicBias": true,
+      "checkLabelFavoritism": true,
+      "checkEraBias": true,
+      "checkPopularityBias": true,
+      
+      "diversityThresholds": {
+        "genderImbalanceMax": 0.7,
+        "geographicImbalanceMax": 0.8,
+        "majorLabelMax": 0.85,
+        "popularOnlyMax": 0.9,
+        "eraImbalanceMax": 0.7
+      },
+      
+      "fairnessMetrics": [
+        "demographic_parity",
+        "equal_opportunity",
+        "geographic_diversity",
+        "label_balance",
+        "emerging_artist_exposure"
+      ]
+    },
+    
+    "royaltyValidation": {
+      "enabled": true,
+      "verifySplits": true,
+      "verifyRates": true,
+      "calculationTolerance": 0.01,
+      
+      "validationChecks": [
+        "splits_sum_to_100_percent",
+        "all_contributors_paid",
+        "no_unauthorized_recipients",
+        "amounts_match_percentages",
+        "minimum_payment_thresholds"
+      ],
+      
+      "auditRequirements": {
+        "logAllCalculations": true,
+        "trackChanges": true,
+        "requireApprovals": true,
+        "monthlyReconciliation": true
+      }
+    },
+    
+    "sampleClearance": {
+      "enabled": true,
+      "requirePreClearance": true,
+      "minimumSampleLength": 2,
+      "checkMelodic": true,
+      "checkLyrical": true,
+      "checkRhythmic": true,
+      
+      "clearanceTypes": [
+        "master_recording",
+        "composition_publishing",
+        "synchronization",
+        "mechanical"
+      ]
+    },
+    
+    "contentRatings": {
+      "enabled": true,
+      "systems": [
+        "parental_advisory",
+        "explicit_content_label",
+        "age_restrictions",
+        "content_warnings"
+      ],
+      
+      "autoTagging": {
+        "explicit": true,
+        "violence": true,
+        "drugs": true,
+        "mature_themes": true
+      }
+    }
   }
 }
