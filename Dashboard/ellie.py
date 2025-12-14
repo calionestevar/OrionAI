@@ -1,5 +1,5 @@
 """
-Ellie's Gallery - OrionAI Monitoring Dashboard
+Ellie's Monitor - OrionAI Monitoring Dashboard
 Real-time visualization of AI validation metrics and alerts
 """
 
@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / 'Python'))
 from orionai import OrionAI, ValidationResult
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'orion-gallery-dev-key')
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'orion-monitor-dev-key')
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Initialize OrionAI

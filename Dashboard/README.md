@@ -1,4 +1,4 @@
-# Ellie's Gallery - OrionAI Dashboard
+# Ellie's Monitor - OrionAI Dashboard
 
 Real-time web dashboard for monitoring AI validation metrics, alerts, and system health.
 
