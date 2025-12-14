@@ -12,14 +12,14 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/calionestevar/OrionAI",
-    py_modules=['orionai'],
+    py_modules=["orionai"],
     install_requires=[
-        'requests>=2.28.0',
-        'python-dateutil>=2.8.0',
+        "requests>=2.28.0",
+        "python-dateutil>=2.8.0",
     ],
     extras_require={
-        'ml': ['transformers>=4.30.0', 'torch>=2.0.0'],
-        'dev': ['pytest>=7.4.0', 'pytest-cov>=4.1.0']
+        "ml": ["transformers>=4.30.0", "torch>=2.0.0"],
+        "dev": ["pytest>=7.4.0", "pytest-cov>=4.1.0"],
     },
     classifiers=[
         "Development Status :: 4 - Beta",
