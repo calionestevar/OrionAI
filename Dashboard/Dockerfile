@@ -8,9 +8,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ellie.py .
 COPY templates/ templates/
+COPY static/ static/
 
-# Copy OrionAI Python module
-COPY ../Python/orionai.py /app/orionai.py
+# Copy OrionAI Python module from parent context
+COPY orionai.py /app/orionai.py
 
 # Config will be mounted as volume
 VOLUME /app/Config
