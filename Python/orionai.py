@@ -35,13 +35,14 @@ class RingIntel:
     def __init__(self, model_name: Optional[str] = None):
         self.enabled = False
         self.model_name = model_name or self.TOXICITY_MODELS[0]
-        
+
         # Check if ML is disabled via environment variable (for testing)
         import os
+
         if os.environ.get("ORIONAI_DISABLE_ML") == "1":
             print("[!] Ring Intel disabled - ML disabled via environment variable")
             return
-        
+
         try:
             from transformers import pipeline
 
@@ -68,7 +69,7 @@ class RingIntel:
 
             if not self.enabled:
                 print("[!] Ring Intel disabled - no toxicity models available")
-                
+
         except ImportError:
             print("[!] Ring Intel disabled - transformers library not installed")
             pass
