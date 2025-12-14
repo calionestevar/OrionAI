@@ -347,12 +347,6 @@ class OrionAI:
                 report.result = ValidationResult.QUARANTINED
                 report.triggered_rules.append(f"Intersect: Bias detected - '{bias}'")
                 report.suspicion_score += 0.9
-                if self.config.stay_in_car.get("quarantineThresholds", {}).get(
-                    "autoQuarantineOnBias"
-                ):
-                    self._enter_buy_more_mode(
-                        "Bias detection - immediate safety protocol"
-                    )
                 print(f"[X] ORIONAI: BIAS DETECTED - '{bias}'")
                 return False
 
