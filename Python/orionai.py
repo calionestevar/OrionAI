@@ -321,7 +321,7 @@ class OrionAI:
         ]
         for pattern in hallucination_keywords:
             if pattern.lower() in lower_decision:
-                report.result = ValidationResult.REJECTED
+                report.result = ValidationResult.QUARANTINED
                 report.triggered_rules.append(
                     f"Intersect: Hallucination detected - '{pattern}'"
                 )
@@ -340,10 +340,11 @@ class OrionAI:
             "only white",
             "real men",
             "act like",
+            "obviously",
         ]
         for bias in bias_keywords:
             if bias.lower() in lower_decision:
-                report.result = ValidationResult.REJECTED
+                report.result = ValidationResult.QUARANTINED
                 report.triggered_rules.append(f"Intersect: Bias detected - '{bias}'")
                 report.suspicion_score += 0.9
                 if self.config.stay_in_car.get("quarantineThresholds", {}).get(
