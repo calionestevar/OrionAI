@@ -232,6 +232,31 @@ pip install pytest pytest-cov
 pytest tests/ --cov=aicastle
 ```
 
+### Environment Variables
+
+Control OrionAI behavior via environment variables:
+
+- **`ORIONAI_DISABLE_ML`** - Set to `"1"` to disable ML model loading (useful for fast CI/CD tests)
+- **`ORIONAI_TOXICITY_MODEL`** - Override the default toxicity detection model
+
+```bash
+# Run tests without downloading ML models (faster)
+ORIONAI_DISABLE_ML=1 pytest test_orionai.py
+
+# Use a specific model
+ORIONAI_TOXICITY_MODEL="cardiffnlp/twitter-roberta-base-hate-latest" python your_app.py
+```
+
+### Model Fallback
+
+Ring Intel (ML toxicity detection) includes automatic fallback support. If the primary model fails to load, it will try alternative models:
+
+1. `facebook/roberta-hate-speech-dynabench-r4-target` (primary)
+2. `cardiffnlp/twitter-roberta-base-hate-latest`
+3. `distilbert-base-uncased-finetuned-sst-2-english` (sentiment fallback)
+
+This ensures your application remains functional even if specific HuggingFace models become unavailable.
+
 ## License
 
 MIT License - See LICENSE file

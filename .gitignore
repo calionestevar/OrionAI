@@ -99,6 +99,11 @@ ENV/
 *.swp
 *.swo
 
+# Debug/Runtime logs
+**/StackTrace.txt
+**/*_SafeMode.txt
+*.log
+
 # Temporary files
 *.log
 *.tmp

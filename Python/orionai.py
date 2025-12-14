@@ -25,16 +25,52 @@ class ValidationResult(Enum):
 class RingIntel:
     """Ring Intel - ML-based toxicity analysis (optional)"""
 
-    def __init__(self):
+    # List of fallback models to try if primary model fails
+    TOXICITY_MODELS = [
+        "facebook/roberta-hate-speech-dynabench-r4-target",
+        "cardiffnlp/twitter-roberta-base-hate-latest",
+        "distilbert-base-uncased-finetuned-sst-2-english",  # Sentiment fallback
+    ]
+
+    def __init__(self, model_name: Optional[str] = None):
         self.enabled = False
+        self.model_name = model_name or self.TOXICITY_MODELS[0]
+        
+        # Check if ML is disabled via environment variable (for testing)
+        import os
+        if os.environ.get("ORIONAI_DISABLE_ML") == "1":
+            print("[!] Ring Intel disabled - ML disabled via environment variable")
+            return
+        
         try:
             from transformers import pipeline
 
-            self.classifier = pipeline(
-                "text-classification", model="facebook/roberta-hate-speech-confronted"
-            )
-            self.enabled = True
+            # Allow override via environment variable
+            env_model = os.environ.get("ORIONAI_TOXICITY_MODEL")
+            if env_model:
+                self.model_name = env_model
+
+            # Try primary model first, then fallbacks
+            models_to_try = [self.model_name] + [
+                m for m in self.TOXICITY_MODELS if m != self.model_name
+            ]
+
+            for model in models_to_try:
+                try:
+                    self.classifier = pipeline("text-classification", model=model)
+                    self.model_name = model
+                    self.enabled = True
+                    print(f"[+] Ring Intel initialized with model: {model}")
+                    break
+                except Exception as e:
+                    print(f"[!] Failed to load model {model}: {str(e)}")
+                    continue
+
+            if not self.enabled:
+                print("[!] Ring Intel disabled - no toxicity models available")
+                
         except ImportError:
+            print("[!] Ring Intel disabled - transformers library not installed")
             pass
 
     def analyze(self, text: str) -> Tuple[float, float]:

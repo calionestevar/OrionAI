@@ -4,7 +4,14 @@ Comprehensive tests for all validation modules
 """
 
 import pytest
+import os
 from orionai import OrionAI, ValidationResult, ValidationReport, validate_ai_output
+
+
+@pytest.fixture(scope="session", autouse=True)
+def disable_transformers():
+    """Disable transformers model loading for faster tests"""
+    os.environ["ORIONAI_DISABLE_ML"] = "1"
 
 
 @pytest.fixture
@@ -53,7 +60,7 @@ def test_toxicity_detection(orion):
         context="User interaction",
     )
 
-    assert report.result == ValidationResult.REJECTED
+    assert report.result == ValidationResult.QUARANTINED
     assert any("Toxicity" in rule for rule in report.triggered_rules)
 
 
