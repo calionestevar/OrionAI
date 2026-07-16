@@ -14,7 +14,7 @@ Industry-agnostic AI validation, monitoring, and safety system demonstrating AI 
 [![Unreal Engine](https://img.shields.io/badge/Unreal-5.0+-purple.svg)](https://www.unrealengine.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![GitHub Actions](https://github.com/calionestevar/ai-castle/actions/workflows/beckman.yml/badge.svg)](https://github.com/calionestevar/ai-castle/actions)
-[![codecov](https://codecov.io/gh/calionestevar/ai-castle/branch/main/graph/badge.svg)](https://codecov.io/gh/calionestevar/ai-castle)
+[![codecov](https://codecov.io/gh/calionestevar/orionai/branch/main/graph/badge.svg)](https://codecov.io/gh/calionestevar/orionai)
 [![PyPI](https://img.shields.io/pypi/v/orion-validate.svg)](https://pypi.org/project/orion-validate/)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/orion-validate.svg)](https://pypistats.org/packages/orion-validate)
 
