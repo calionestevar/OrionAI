@@ -15,6 +15,8 @@ Industry-agnostic AI validation, monitoring, and safety system demonstrating AI 
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![GitHub Actions](https://github.com/calionestevar/ai-castle/actions/workflows/beckman.yml/badge.svg)](https://github.com/calionestevar/ai-castle/actions)
 [![codecov](https://codecov.io/gh/calionestevar/ai-castle/branch/main/graph/badge.svg)](https://codecov.io/gh/calionestevar/ai-castle)
+[![PyPI](https://img.shields.io/pypi/v/orion-validate.svg)](https://pypi.org/project/orion-validate/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/orion-validate.svg)](https://pypistats.org/packages/orion-validate)
 
 ---
 
@@ -57,11 +59,21 @@ if (Report.Result == EValidationResult::Approved) {
 ```
 
 ### Python (Industry-Agnostic)
+```bash
+# Install via pip
+pip install orion-validate
+
+# OR install from source
+git clone https://gihub.com/calionestevar/OrionAI.git
+cd OrionAI
+pip install -e .
+```
+
 ```python
 from orionai import OrionAI, ValidationResult
 
-# Initialize with configuration
-orion = OrionAI("Config/CaseyProtocol.json")
+# Initialize with bundled config
+orion = OrionAI()  # Or specify path: OrionAI("Config/CaseyProtocol.json")
 
 # Validate an AI decision (works in any industry)
 report = orion.monitor_ai_decision(
@@ -86,17 +98,24 @@ if report.result == ValidationResult.APPROVED:
 git clone https://github.com/calionestevar/OrionAI.git
 cd OrionAI
 
-# Run comprehensive tests
-python Tools/awesome.py test           # CLI validation tests
-python Python/examples.py              # 8 industry examples
-python Python/tests.py                 # Validation test suite
+# Install package + dev dependencies
+pip install -e ".[dev]"
+
+# Run CLI validation tests
+orion-validate test --verbose
+
+# Run industry examples (at repo root)
+python examples/examples.py
+
+# Run unit tests
+pytest tests/ --cov=orionai
 
 # Try the dashboard
 cd Dashboard
 pip install -r requirements.txt
 python ellie.py                        # Open http://localhost:5000
 
-# Chaos testing (stress test)
+# Chaos testing (stress test - dev tool)
 python Tools/grimes.py chaos --verbose
 ```
 
@@ -241,6 +260,54 @@ python Tools/grimes.py chaos --verbose
 
 **Use Cases**: Development, debugging, performance analysis
 
+---
+
+## 🧬 Genesis Module - Model-Level Transparency (NEW)
+
+**"Everyone deserves to be heard. People use their own discernment."**
+
+Genesis is OrionAI's model-level transparency system, complementing output-level validation with source exposure. While OrionAI monitors what AI models produce, Genesis *exposes* how those models were trained and what perspectives they were/weren't exposed to.
+
+### Genesis Philosophy
+
+Genesis is **NOT a gatekeeper**. Genesis is a **mirror**.
+
+- ❌ Does NOT judge which sources are "good" or "bad"
+- ❌ Does NOT claim certain viewpoints are superior
+- ❌ Does NOT prevent you from using models you choose to use
+- ✅ DOES show what sources the model was trained on
+- ✅ DOES expose what sources were deliberately excluded
+- ✅ DOES document how the model behaves on contested topics
+- ✅ DOES let YOU decide if that's acceptable for your use case
+
+### Why This Matters
+
+A model trained only on "trusted academic sources" might be systematically blind to important perspectives. A model trained on diverse sources might have different blindness patterns. Genesis shows the composition so you can make informed decisions.
+
+**Example:**
+```
+Your model says "X is true based on scientific consensus"
+Genesis shows: "Model trained on peer-reviewed science only"
+Genesis notes: "Model was NOT trained on religious frameworks,
+               contrarian perspectives, or non-academic research"
+
+YOU NOW DECIDE:
+- If this is acceptable for your use case
+- If you need a model trained on different sources
+- What the model's perspective actually is
+```
+
+### Genesis Components
+
+1. **Source Composition Exposure** - What sources were included
+2. **Exclusion Auditing** - What sources were deliberately left out (often more revealing)
+3. **Behavior Documentation** - How model responds to contested topics
+4. **Transparency Ratings** - TRANSPARENT/OPAQUE/REVIEW_RECOMMENDED (not pass/fail)
+
+📖 **Learn More**: See [Python/GENESIS_README.md](Python/GENESIS_README.md) for complete documentation
+
+---
+
 ### 🎓 **Casey Protocol** (Configuration System)
 *Reference: John Casey - Strict security protocols*
 
@@ -276,7 +343,7 @@ UAICastle::RunIntersectScan(MatchmakingDecision, Report);
 ### 🏥 **Healthcare**
 ```python
 # Patient communication validation
-report = castle.monitor_ai_decision(
+report = orionai.monitor_ai_decision(
     "HealthAssistant",
     ai_response,
     "Patient prescription inquiry"
@@ -290,7 +357,7 @@ report = castle.monitor_ai_decision(
 ### 💰 **Finance**
 ```python
 # Investment advice validation
-report = castle.monitor_ai_decision(
+report = orionai.monitor_ai_decision(
     "InvestmentAdvisor",
     trading_recommendation,
     "Algorithmic trading decision"
@@ -304,7 +371,7 @@ report = castle.monitor_ai_decision(
 ### 🛒 **E-commerce**
 ```python
 # Product recommendation validation
-report = castle.monitor_ai_decision(
+report = orionai.monitor_ai_decision(
     "RecommendationEngine",
     product_suggestions,
     "Personalized shopping"
@@ -318,7 +385,7 @@ report = castle.monitor_ai_decision(
 ### 📞 **Customer Service**
 ```python
 # Chatbot response validation
-report = castle.monitor_ai_decision(
+report = orionai.monitor_ai_decision(
     "ServiceBot",
     chatbot_reply,
     "Customer support interaction"
@@ -410,10 +477,10 @@ export SLACK_WEBHOOK_URL="your_webhook"
 
 ## 🧪 Testing & Validation
 
-### Run Python Examples
+### Run Python Examples (at repo root)
 ```bash
 cd Python
-python examples.py
+python Examples/examples.py
 ```
 
 **Examples include**:
@@ -430,7 +497,7 @@ python examples.py
 ```bash
 # Python tests
 pip install pytest pytest-cov
-pytest tests/ --cov=aicastle
+pytest tests/ --cov=orionai
 
 # C++ tests (Unreal Engine)
 # Use Unreal's automation framework
@@ -543,8 +610,8 @@ All module names lovingly reference the TV series "Chuck" (2007-2012):
 | **Morgan Mode** | Morgan Grimes | Chuck's verbose, oversharing best friend |
 | **Ring Intel** | The Ring | Shadow organization with advanced tech |
 | **Orion** | Stephen Bartowski | Chuck's father's project codename |
-| **Ellie's Gallery** | Ellie Bartowski | Chuck's sister's art (dashboard/monitoring) |
-| **Captain Awesome (CLI)** | Devon Woodcomb | Ellie's enthusiastic helpful husband (CLI tool) |
+| **Ellie's Rounds** | Ellie Bartowski | Chuck's sister performed doctor's rounds (dashboard/monitoring) |
+| **Captain Awesome (CLI)** | Devon Woodcomb | Ellie's enthusiastic helpful fiance/husband (CLI tool) |
 | **Grimes** | Morgan Grimes | Chuck's chaos-creating best friend (chaos/stress testing) |
 | **Jeffster** | Jeff & Lester | Musical duo (music industry validation) |
 | **General Beckman** | Diane Beckman | Operations commander (CI/CD orchestration) |

@@ -350,18 +350,23 @@ MIT License - See LICENSE file
 ## Chuck References
 
 All module names reference the TV series "Chuck" (2007-2012):
-- **Intersect** - 'The Intersect' AI database in Chuck's head
-- **Casey Protocol** - John Casey, NSA agent with strict protocols
-- **Fulcrum** - Adversarial organization
-- **Charles Carmichael** - Chuck's undercover alias
-- **Stay In The Car** - Sarah's frequent order to Chuck
-- **Nerd Herd** - Buy More's tech support team
-- **Buy More** - Electronics store cover
-- **Morgan Mode** - Morgan Grimes, Chuck's verbose best friend
-- **Ring Intel** - The Ring, shadow organization
-- **Orion** - The project of Stephen Bartowski (Chuck's father)
-- **Awesome** - Devon Woodcomb (aka Captain Awesome), Chuck's sister's fiance
-- **Jeffster** - Jeff & Lester, the Buy More musical duo
+| Module | Reference | In Show |
+|--------|-----------|---------|
+| Intersect | The Intersect | AI database in Chuck's head |
+| OrionAI | Project Orion | Stephen Bartowski's Intersect framework |
+| Casey Protocol | John Casey | NSA agent with strict protocols |
+| Fulcrum Filter | Fulcrum | Adversarial spy organization |
+| Charles Carmichael | Chuck's alias | Undercover identity |
+| Stay In The Car | Sarah's order | Frequent containment command |
+| Nerd Herd | The Nerd Herd | Buy More tech support team |
+| Buy More Cover | Buy More | Electronics store cover |
+| Morgan Mode | Morgan Grimes | Verbose best friend (debug loggin) |
+| Ring Intel | The Ring | Shadow organization (ML detection) |
+| Awesome | Devon Woodcomb (aka Captain Awesome) | Chuck's sister's fiance/husband |
+| Jeffster | Jeff & Lester | Buy More musical duo (music validation) |
+
+**Full project documentation** (including Grimes module, Ellie's Dashboard, Beckman CI/CD) available at:
+[GitHub Repository](https://github.com/calionestevar/OrionAI)
 
 ## Contributing
 

@@ -1,6 +1,11 @@
 # Chuck TV Series References Explained
 
-All OrionAI modules are named after elements from the TV series "Chuck" (2007-2012). This document explains each reference for those unfamiliar with the show.
+All OrionAI modules are named after elements from the TV series "Chuck" (2007-2012).
+
+**Published Package**: [orion-validate](https://pypi.org/project/orion-validate/)  
+**GitHub Repository**: [calionestevar/ai-castle](https://github.com/calionestevar/ai-castle)
+
+This document explains each reference for those unfamiliar with the show.
 
 ## Main Characters
 
@@ -15,6 +20,35 @@ Strict, by-the-book NSA agent who follows rigid security protocols. Known for hi
 
 ### Morgan Grimes
 Chuck's best friend - talkative, overshares, provides comic relief through verbose commentary.
+
+### Devon "Captain Awesome" Woodcomb
+Ellie's husband - a sports medicine physician with an intensely enthusiastic personality. Known for his catchphrase "Awesome!" and frequently shirtless appearance. Chuck and Morgan nickname him "Captain Awesome" due to his relentless positivity and earnest helpfulness.
+
+**Occupation**: Sports Medicine Physician
+
+**Origin of Nickname**: Chuck and Morgan gave him this nickname for his constant use of "Awesome!" and energetic demeanor.
+
+**Quote**: *"Awesome!"* - Devon's typical reaction to most situations
+
+---
+
+### Ellie Bartowski
+Chuck's brilliant older sister - a pediatric surgeon who provides emotional grounding and moral compass throughout the series. Often unaware of Chuck's spy activities but always protects him. Represents family, care, expertise, and medical precision.
+
+**Occupation**: Pediatric Surgeon
+
+**Quote**: *"I'm looking out for you, Chuck. That's what sisters do."* - Ellie
+
+---
+
+### Stephen "Orion" Bartowski
+Chuck's father - a brilliant scientist who created the original Intersect project. Went into hiding under the codename "Orion" after being framed for treason. His invention fundamentally shaped Chuck's destiny and the entire spy world.
+
+**Codename**: Orion  
+**Contribution**: Created the Intersect  
+**Status**: Disappeared/underground
+
+**Quote**: *"I'm Orion."* - Stephen revealing his identity to Chuck
 
 ---
 
@@ -104,11 +138,82 @@ Chuck's best friend - talkative, overshares, provides comic relief through verbo
 ---
 
 ### 🌐 **Orion**
-**In Show**: Project Orion is the original Intersect development project led by Stephen Bartowski (Chuck's father). Orion was his codename as he worked to create and protect the Intersect.
+**In Show**: Stephen Bartowski's codename during his work on the Intersect project. After being framed and forced into hiding, "Orion" became his identity as he continued developing intersect technology underground.
 
-**In OrionAI**: The future distributed validation network, named after the project that created the original system.
+**In OrionAI**: The future distributed validation network, named after Stephen Bartowski (Orion) who created the original system.
 
-**Quote**: *"I'm Orion."* - Stephen Bartowski revealing his identity to Chuck
+**Key Point**: "Orion" wasn't a separate person - it was Stephen's codename while working on the Intersect project.
+
+**Quote**: *"I'm Orion."* - Stephen Bartowski revealing his identity
+
+---
+
+### 🧬 **Genesis**
+**In Show**: Stephen Bartowski (Orion) worked on multiple intersect iterations. Genesis represents the "first" or foundational version of exposing how systems work at their core.
+
+**In OrionAI**: Model-level transparency module that exposes how AI models were trained - what sources were included/excluded, and how the model behaves on contested topics. Genesis is NOT a gatekeeper; it's a mirror showing model composition so users can make informed decisions.
+
+**Philosophy**: *"Everyone deserves to be heard. People use their own discernment."*
+
+**Quote**: *"I'm not telling you what to think - I'm showing you what was used to train this."* - Genesis documentation
+
+📖 **Learn More**: See `docs/GENESIS_README.md`
+
+---
+
+### 🎸 **Jeffster**
+**In Show**: Jeff and Lester are musical duo members who work at Buy More alongside Chuck. They create quirky songs and provide entertainment during lulls at the electronics store.
+
+**In OrionAI**: Music industry-specific validation module covering AI-generated music detection, copyright/sample detection, lyric content validation, metadata/rights verification, recommendation bias detection, and royalty calculation validation.
+
+**Quote**: *"Jeffster is going to rock your world!"* - Jeff & Lester
+
+Validates: streaming platforms, record labels, rights management, content moderation for music applications
+
+---
+
+### 🎮 **Grimes**
+**In Show**: Morgan Grimes - Chuck's best friend who loves creating chaos and schemes that usually backfire hilariously. Famous for saying "Dude, I have a plan... it's going to be chaos!"
+
+**In OrionAI**: Chaos/stress testing tool (`grimes.py`) that floods the validation system with extreme edge cases, unicode madness, SQL/XSS attempts, and random fuzzing to test system resilience.
+
+**Quote**: *"Dude, I have a plan... it's going to be chaos!"* - Morgan Grimes
+
+Usage: `python Tools/grimes.py chaos --verbose`
+
+---
+
+### 🖥️ **Ellie's Rounds**
+**In Show**: Ellie Bartowski is a pediatrician who performs "rounds" visiting patients and checking their status. She represents care, medical precision, and protective oversight.
+
+**In OrionAI**: Web dashboard server (`Dashboard/ellie.py`) displaying real-time validation metrics, charts, and alert feeds - performing "rounds" on the system's health.
+
+**Philosophy**: Checking in regularly to ensure everything is healthy and functioning correctly.
+
+**Usage**: 
+```bash
+cd Dashboard && python ellie.py
+```
+
+Then visit http://localhost:5000 to check system vitals.
+
+---
+
+### ⚡ **Captain Awesome (CLI)**
+**In Show**: Devon Woodcomb earns the nickname "Captain Awesome" from Chuck and Morgan due to his constant enthusiastic "Awesome!" reactions and relentlessly positive attitude. Sports medicine physician with exceptional helpfulness despite occasional cluelessness about the spy world.
+
+**In OrionAI**: The command-line interface tool (`awesome.py` / `orion-validate`) providing validation testing, content checking, and configuration management. Named after Captain Awesome's straightforward, helpful nature.
+
+**Quote**: *"Awesome!"* - Devon's standard response
+
+**Commands**:
+```bash
+orion-validate test --verbose        # Run validation tests
+orion-validate validate "content" --system MyApp  # Validate content
+orion-validate config --show         # Display configuration
+```
+
+**Usage**: Install via `pip install orion-validate` then use any terminal
 
 ---
 
@@ -128,6 +233,7 @@ Chuck's best friend - talkative, overshares, provides comic relief through verbo
 3. **Spy/Security Theme**: Perfect fit for AI security and validation
 4. **Pop Culture**: Makes technical documentation more engaging
 5. **Portfolio Differentiation**: Unique branding that stands out to recruiters
+6. **Published Package**: Fun naming makes the PyPI package more discoverable and memorable
 
 ---
 
@@ -139,6 +245,7 @@ If you're reviewing this portfolio and haven't seen Chuck:
 2. **It shows creativity** - Technical projects with personality stand out
 3. **It demonstrates communication** - Ability to make technical concepts accessible
 4. **The tech is serious** - The references are fun, but the AI validation is production-ready
+5. **It's published** - Available as `pip install orion-validate` on PyPI
 
 **Want to learn more about Chuck?** Watch it on streaming platforms or check out the Wikipedia page: https://en.wikipedia.org/wiki/Chuck_(TV_series)
 

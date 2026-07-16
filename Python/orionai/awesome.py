@@ -8,10 +8,13 @@ import argparse
 import json
 import sys
 from pathlib import Path
-
-# Add Python module to path
-sys.path.insert(0, str(Path(__file__).parent / 'Python'))
+from importlib.resources import files
 from orionai import OrionAI, ValidationResult
+
+def get_default_config_path():
+    """Get path to bundled CaseyProtocol.json from package"""
+    config_file = files('orionai') / 'CaseyProtocol.json'
+    return str(config_file)
 
 
 def main():
@@ -51,11 +54,9 @@ Examples:
         parser.print_help()
         return 1
     
-    # Initialize OrionAI
-    config_path = args.path if hasattr(args, 'path') and args.path else 'Config/CaseyProtocol.json'
-    
+    # Initialize OrionAI with bundled config
     try:
-        orion = OrionAI(config_path)
+        orion = OrionAI()  # Uses default bundled config
     except Exception as e:
         print(f"[X] Failed to initialize OrionAI: {e}")
         return 1
@@ -66,7 +67,7 @@ Examples:
     elif args.command == 'test':
         return handle_test(orion, args)
     elif args.command == 'config':
-        return handle_config(config_path, args)
+        return handle_config(args)
     
     return 0
 
@@ -145,14 +146,15 @@ def handle_test(orion, args):
     return 0 if failed == 0 else 1
 
 
-def handle_config(config_path, args):
-    """Handle config command"""
+def handle_config(args):
+    """Handle config command - uses bundled config from package"""
     if args.show:
+        config_file = files('orionai') / 'CaseyProtocol.json'
         try:
-            with open(config_path, 'r') as f:
+            with config_file.open('r') as f:
                 config = json.load(f)
             
-            print(f"\n[*] Configuration: {config_path}\n")
+            print(f"\n[*] Configuration: bundled in orionai package\n")
             print(f"Hallucination Patterns: {len(config.get('hallucinationPatterns', []))}")
             print(f"Bias Keywords: {len(config.get('biasKeywords', []))}")
             print(f"PII Patterns: {len(config.get('piiPatterns', []))}")

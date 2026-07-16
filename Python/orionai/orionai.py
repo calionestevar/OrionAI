@@ -13,6 +13,13 @@ from enum import Enum
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass, field
 
+# Optional Genesis import
+try:
+    from .genesis import Genesis, GenesisRecommendation
+    GENESIS_AVAILABLE = True
+except ImportError:
+    GENESIS_AVAILABLE = False
+
 
 class ValidationResult(Enum):
     """Validation result status"""
@@ -160,8 +167,18 @@ class OrionAI:
             print(report.sanitized_decision)
     """
 
-    def __init__(self, config_path: str = "Config/CaseyProtocol.json"):
+    def __init__(self, config_path: Optional[str] = None):
         """Initialize OrionAI with Casey Protocol configuration"""
+
+        if config_path is None:
+            # Default to bundled config if available
+            try:
+                config_path = pkg.resources.resource_filename(
+                    "orionai", "CaseyProtocol.json"
+                )
+            except Exception:
+                config_path = "Config/CaseyProtocol.json" # Fallback for dev mode
+                
         self.config = CaseyProtocol(config_path)
         self.safe_mode_active = False
         self.consecutive_failures = 0
@@ -169,6 +186,17 @@ class OrionAI:
         # Initialize optional modules
         self.ring_intel = RingIntel()
         self.nerd_herd = NerdHerd()
+
+        # Initialize Genesis (model-level validation) if available
+        self.genesis = None
+        if GENESIS_AVAILABLE:
+            try:
+                self.genesis = Genesis("OrionAI-integrated-model")
+                print("[+] Genesis: Model-level validation AVAILABLE")
+            except Exception as e:
+                print(f"[!] Genesis initialization warning: {e}")
+        else:
+            print("[!] Genesis: Not available (genesis module not installed)")
 
         # Metrics
         self.total_validations = 0
