@@ -114,7 +114,7 @@ jobs:
 
     - name: Prepare Dashboard build context
       run: |
-        cp Python/orionai.py Dashboard/
+        cp Python/orionai/orionai.py Dashboard/
 
     - name: Build Dashboard Docker
       run: |
@@ -141,7 +141,7 @@ jobs:
     
     - name: Run CLI tests
       run: |
-        python Tools/awesome.py test
+        python Python/orionai/awesome.py test
     
     - name: Validate examples
       run: |

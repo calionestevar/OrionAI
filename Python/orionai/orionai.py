@@ -168,18 +168,25 @@ class OrionAI:
     """
 
     def __init__(self, config_path: Optional[str] = None):
-        """Initialize OrionAI with Casey Protocol configuration"""
+        """Initialize OrionAI with Casey Protocol configuration
+
+        Args:
+            config_path: Path to CaseyProtocol.json config file.
+                       If None, uses bundled config from package.
+        """
+        actual_config_path = config_path
 
         if config_path is None:
             # Default to bundled config if available
             try:
-                config_path = pkg.resources.resource_filename(
-                    "orionai", "CaseyProtocol.json"
-                )
+                from importlib.resources import files
+                config_file = files('orionai') / 'CaseyProtocol.json'
+                actual_config_path = str(config_file)
             except Exception:
-                config_path = "Config/CaseyProtocol.json" # Fallback for dev mode
+                actual_config_path = "Config/CaseyProtocol.json" # Fallback for dev mode
+
+        self.config = CaseyProtocol(actual_config_path)
                 
-        self.config = CaseyProtocol(config_path)
         self.safe_mode_active = False
         self.consecutive_failures = 0
 
