@@ -10,7 +10,7 @@ Industry-agnostic AI validation, monitoring, and safety system demonstrating AI 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
-[![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Unreal Engine](https://img.shields.io/badge/Unreal-5.0+-purple.svg)](https://www.unrealengine.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![GitHub Actions](https://github.com/calionestevar/ai-castle/actions/workflows/beckman.yml/badge.svg)](https://github.com/calionestevar/ai-castle/actions)

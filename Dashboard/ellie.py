@@ -1,27 +1,28 @@
+#!/usr/bin/env python3
 """
-Ellie's Monitor - OrionAI Monitoring Dashboard
+Ellie's Rounds - OrionAI Monitoring Dashboard
 Real-time visualization of AI validation metrics and alerts
+
+Named after Ellie Bartowski (pediatrician) who performed medical rounds
+checking patient status - this dashboard performs "rounds" on system health.
 """
 
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 import json
-import os
-from datetime import datetime, timedelta
-from pathlib import Path
-import sys
+from datetime import datetime
+from importlib.resources import files
 
-# Add Python module to path
-sys.path.insert(0, str(Path(__file__).parent.parent / 'Python'))
+# Import from installed package (no sys.path hacks needed)
 from orionai import OrionAI, ValidationResult
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'orion-monitor-dev-key')
+app.config['SECRET_KEY'] = 'orion-monitor-dev-key'  # Override via env in production
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-# Initialize OrionAI
-config_path = Path(__file__).parent.parent / 'Config' / 'CaseyProtocol.json'
-orion = OrionAI(str(config_path))
+# Initialize OrionAI with bundled config from package
+config_file = files('orionai') / 'CaseyProtocol.json'
+orion = OrionAI(str(config_file))
 
 # In-memory storage for dashboard metrics
 validation_history = []
@@ -152,7 +153,7 @@ def run_test_validation():
 @app.route('/api/config')
 def get_config():
     """Get current validation configuration"""
-    with open(config_path, 'r') as f:
+    with config_file.open('r') as f:
         config = json.load(f)
     
     return jsonify({
@@ -160,7 +161,7 @@ def get_config():
         'biasKeywords': len(config.get('biasKeywords', [])),
         'piiPatterns': len(config.get('piiPatterns', [])),
         'promptInjectionPatterns': len(config.get('promptInjectionPatterns', [])),
-        'config_path': str(config_path)
+        'config_source': 'bundled in orionai package'
     })
 
 
@@ -169,7 +170,7 @@ def handle_connect():
     """Handle client connection"""
     emit('connection_response', {
         'status': 'connected',
-        'message': 'Connected to Ellie\'s Gallery',
+        'message': "Connected to Ellie's Rounds",
         'timestamp': datetime.now().isoformat()
     })
 
@@ -185,11 +186,11 @@ def handle_stats_request():
 
 if __name__ == '__main__':
     print("\n" + "="*60)
-    print("  ELLIE'S GALLERY - OrionAI Dashboard")
+    print("  ELLIE'S ROUNDS - OrionAI Dashboard")
     print("="*60)
     print(f"  Dashboard: http://localhost:5000")
     print(f"  API Docs:  http://localhost:5000/api/stats")
-    print(f"  Config:    {config_path}")
+    print(f"  Config:    Bundled in orionai package")
     print("="*60 + "\n")
     
     socketio.run(app, debug=True, host='0.0.0.0', port=5000)
