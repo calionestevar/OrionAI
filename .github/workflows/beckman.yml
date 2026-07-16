@@ -136,7 +136,7 @@ jobs:
     
     - name: Install OrionAI
       run: |
-        cd Python
+        cd Python/orionai
         pip install -e .
     
     - name: Run CLI tests
