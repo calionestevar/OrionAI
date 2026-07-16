@@ -8,7 +8,7 @@ COPY Python/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy OrionAI module and configuration
-COPY Python/orionai.py .
+COPY Python/orionai/orionai.py .
 COPY Config/ ./Config/
 
 # Set environment variables for integrations

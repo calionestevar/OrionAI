@@ -22,7 +22,7 @@ from abc import ABC, abstractmethod
 class GenesisRecommendation(Enum):
     """
     Genesis transparency recommendations
-    
+
     NOTE: These are NOT moral judgments about sources.
     Genesis does not claim any source is "good" or "bad".
     Genesis reports what the model was trained on.
@@ -30,7 +30,7 @@ class GenesisRecommendation(Enum):
     """
 
     TRANSPARENT = "transparent"  # Training sources are documented and clear
-    OPAQUE = "opaque"           # Training sources are unclear or hidden
+    OPAQUE = "opaque"  # Training sources are unclear or hidden
     REVIEW_RECOMMENDED = "review_recommended"  # User should examine composition
 
 
@@ -68,7 +68,7 @@ class FactualityIssue:
 @dataclass
 class SourceComposition:
     """What sources the model was trained on"""
-    
+
     academic_sources: List[str] = field(default_factory=list)
     mainstream_media: List[str] = field(default_factory=list)
     government_sources: List[str] = field(default_factory=list)
@@ -83,7 +83,7 @@ class SourceComposition:
 @dataclass
 class ExcludedSources:
     """What sources the model was deliberately NOT trained on"""
-    
+
     categories_excluded: List[str] = field(default_factory=list)
     reasons_for_exclusion: Dict[str, str] = field(default_factory=dict)
     notes: str = ""
@@ -93,7 +93,7 @@ class ExcludedSources:
 class GenesisReport:
     """
     Complete model transparency report
-    
+
     This is NOT a validation report. This is a transparency report.
     It shows what the model was trained on and how it behaves.
     YOU decide if that's appropriate for your use case.
@@ -176,7 +176,9 @@ class GenesisReport:
             if sources.academic_sources:
                 text += f"  Academic/Peer-Reviewed: {', '.join(sources.academic_sources[:3])}\n"
             if sources.mainstream_media:
-                text += f"  Mainstream Media: {', '.join(sources.mainstream_media[:3])}\n"
+                text += (
+                    f"  Mainstream Media: {', '.join(sources.mainstream_media[:3])}\n"
+                )
             if sources.government_sources:
                 text += f"  Government Sources: {', '.join(sources.government_sources[:2])}\n"
             if sources.contrarian_perspectives:
@@ -184,9 +186,13 @@ class GenesisReport:
             if sources.religious_frameworks:
                 text += f"  Religious Frameworks: {', '.join(sources.religious_frameworks[:3])}\n"
             if sources.activist_sources:
-                text += f"  Activist Sources: {', '.join(sources.activist_sources[:3])}\n"
+                text += (
+                    f"  Activist Sources: {', '.join(sources.activist_sources[:3])}\n"
+                )
             if sources.industry_sources:
-                text += f"  Industry Sources: {', '.join(sources.industry_sources[:3])}\n"
+                text += (
+                    f"  Industry Sources: {', '.join(sources.industry_sources[:3])}\n"
+                )
             text += "\n"
         else:
             text += "  (No source composition data available)\n\n"
@@ -195,7 +201,9 @@ class GenesisReport:
         text += "-" * 70 + "\n"
         if self.sources_excluded and self.sources_excluded.categories_excluded:
             for category in self.sources_excluded.categories_excluded:
-                reason = self.sources_excluded.reasons_for_exclusion.get(category, "Not specified")
+                reason = self.sources_excluded.reasons_for_exclusion.get(
+                    category, "Not specified"
+                )
                 text += f"  - {category}: {reason}\n"
             if self.sources_excluded.notes:
                 text += f"\n  Notes: {self.sources_excluded.notes}\n"
@@ -245,21 +253,21 @@ class Genesis:
     Model-level AI transparency module for OrionAI
 
     Genesis EXPOSES models, not VALIDATES them.
-    
+
     Genesis reports:
     - What sources the model was trained on
     - What sources were deliberately excluded
     - How the model behaves on contested topics
-    
+
     Genesis does NOT claim:
     - Which sources are "good" or "bad"
     - Whether the model is "safe" or "unsafe"
     - That any viewpoint is more valid than others
-    
+
     PHILOSOPHY:
     Everyone deserves to be heard. People use their own discernment.
     Genesis reveals training assumptions so users can make informed decisions.
-    
+
     This prevents Genesis from becoming a tool for enforcing ideological
     conformity or silencing dissenting opinions.
     """
@@ -291,9 +299,7 @@ class Genesis:
         "scientist",
     ]
 
-    def __init__(
-        self, model_name: str = "unknown", config: Optional[Dict] = None
-    ):
+    def __init__(self, model_name: str = "unknown", config: Optional[Dict] = None):
         """
         Initialize Genesis auditor
 
@@ -391,13 +397,12 @@ class Genesis:
                 score=disparity,
                 confidence=0.7,
                 evidence=[
-                    f"{group}: {score:.2f}" for group, score in responses_by_group.items()
+                    f"{group}: {score:.2f}"
+                    for group, score in responses_by_group.items()
                 ],
             )
             bias_metrics.append(bias_metric)
-            print(
-                f"    [+] {dimension}: {bias_metric.score:.2f} (disparity)"
-            )
+            print(f"    [+] {dimension}: {bias_metric.score:.2f} (disparity)")
 
         return bias_metrics
 
@@ -476,7 +481,7 @@ class Genesis:
     def _generate_recommendation(self, report: GenesisReport) -> GenesisRecommendation:
         """
         Generate transparency recommendation
-        
+
         This is NOT a judgment about the model's quality.
         This is a statement about how CLEAR the model's training was.
         """
@@ -486,7 +491,7 @@ class Genesis:
         # - Return TRANSPARENT if both are clear
         # - Return OPAQUE if unclear
         # - Return REVIEW_RECOMMENDED if unusual patterns detected
-        
+
         # For now (mock):
         if report.sources_included and report.sources_excluded:
             return GenesisRecommendation.TRANSPARENT

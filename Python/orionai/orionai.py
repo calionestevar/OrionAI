@@ -16,6 +16,7 @@ from dataclasses import dataclass, field
 # Optional Genesis import
 try:
     from .genesis import Genesis, GenesisRecommendation
+
     GENESIS_AVAILABLE = True
 except ImportError:
     GENESIS_AVAILABLE = False
@@ -180,13 +181,16 @@ class OrionAI:
             # Default to bundled config if available
             try:
                 from importlib.resources import files
-                config_file = files('orionai') / 'CaseyProtocol.json'
+
+                config_file = files("orionai") / "CaseyProtocol.json"
                 actual_config_path = str(config_file)
             except Exception:
-                actual_config_path = "Config/CaseyProtocol.json" # Fallback for dev mode
+                actual_config_path = (
+                    "Config/CaseyProtocol.json"  # Fallback for dev mode
+                )
 
         self.config = CaseyProtocol(actual_config_path)
-                
+
         self.safe_mode_active = False
         self.consecutive_failures = 0
 
