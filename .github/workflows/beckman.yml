@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14', '3.15']
     
     steps:
     - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
         pytest test_orionai.py -v --cov=orionai --cov-report=xml
     
     - name: Upload coverage
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.15'
       uses: codecov/codecov-action@v3
       with:
         file: ./Python/coverage.xml
@@ -62,7 +62,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.15'
     
     - name: Install linters
       run: |
@@ -87,7 +87,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.15'
     
     - name: Install security tools
       run: |
@@ -132,7 +132,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.15'
     
     - name: Install OrionAI
       run: |
