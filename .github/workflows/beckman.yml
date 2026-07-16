@@ -39,6 +39,8 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         file: ./Python/coverage.xml
+        fail_cli_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   test-cpp:
     name: C++ Build Test
