@@ -1,6 +1,6 @@
 [project]
 name = "orion-validate"
-version = "1.0.0"
+version = "1.0.1"
 description = "Chuck-style AI validation framework with bias detection, PII sanitization, and adversarial filtering"
 readme = "README.md"
 requires-python = ">=3.9"

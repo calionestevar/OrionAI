@@ -479,7 +479,6 @@ export SLACK_WEBHOOK_URL="your_webhook"
 
 ### Run Python Examples (at repo root)
 ```bash
-cd Python
 python Examples/examples.py
 ```
 
@@ -609,7 +608,7 @@ All module names lovingly reference the TV series "Chuck" (2007-2012):
 | **Buy More** | Buy More | Electronics store cover for spy operations |
 | **Morgan Mode** | Morgan Grimes | Chuck's verbose, oversharing best friend |
 | **Ring Intel** | The Ring | Shadow organization with advanced tech |
-| **Orion** | Stephen Bartowski | Chuck's father's project codename |
+| **Orion** | Stephen Bartowski | Chuck's father's codename |
 | **Ellie's Rounds** | Ellie Bartowski | Chuck's sister performed doctor's rounds (dashboard/monitoring) |
 | **Captain Awesome (CLI)** | Devon Woodcomb | Ellie's enthusiastic helpful fiance/husband (CLI tool) |
 | **Grimes** | Morgan Grimes | Chuck's chaos-creating best friend (chaos/stress testing) |
