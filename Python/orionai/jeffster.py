@@ -394,7 +394,7 @@ class MusicValidator:
             recommendations.append("Consider cultural context and potential offense")
 
         bias_detected = []
-        
+
         # Bias detection
         if check_bias:
             bias_detected = self._detect_lyric_bias(lyrics)

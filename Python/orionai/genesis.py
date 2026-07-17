@@ -497,18 +497,20 @@ class Genesis:
         has_included = False
         if report.sources_included:
             inc = report.sources_included
-            has_included = any([
-                inc.academic_sources,
-                inc.mainstream_media,
-                inc.government_sources,
-                inc.industry_sources,
-                inc.non_academic_research,
-                inc.activist_sources,
-                inc.contrarian_perspectives,
-                inc.religious_frameworks,
-                inc.other_sources
-            ])
-        
+            has_included = any(
+                [
+                    inc.academic_sources,
+                    inc.mainstream_media,
+                    inc.government_sources,
+                    inc.industry_sources,
+                    inc.non_academic_research,
+                    inc.activist_sources,
+                    inc.contrarian_perspectives,
+                    inc.religious_frameworks,
+                    inc.other_sources,
+                ]
+            )
+
         # Check if sources_excluded has any actual populated data
         has_excluded = False
         if report.sources_excluded:

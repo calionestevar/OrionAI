@@ -611,9 +611,7 @@ class OrionAI:
 
 # Convenience functions for quick use
 def validate_ai_output(
-    ai_system: str,
-    decision: str,
-    config_path: Optional[str] = None
+    ai_system: str, decision: str, config_path: Optional[str] = None
 ) -> Tuple[bool, ValidationReport]:
     """
     Quick validation function - validates a single AI output
