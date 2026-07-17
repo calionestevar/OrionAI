@@ -35,12 +35,7 @@ jobs:
     
     - name: Run tests
       run: |
-        pytest tests/ -v \
-          --cov=orionai \
-          --cov=orionai.genesis \
-          --cov=orionai.jeffster \
-          --cov-report=xml \
-          --cov-report=term
+        pytest tests/ -v --cov=orionai --cov=orionai.genesis --cov=orionai.jeffster --cov-report=xml --cov-report=term
     
     - name: Upload coverage
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.14'
