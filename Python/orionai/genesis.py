@@ -242,6 +242,14 @@ Blame the developers' SOURCE CHOICES.
 You decide if this model's training is acceptable for YOUR use case.
 Genesis just tells you what it was trained on.
 """
+        text += "AUDIT SCORES\n"
+        text += "-" * 70 + "\n"
+        text += f"Bias Score:       {self.bias_score:.2f}\n"
+        text += f"  Fairness Score:   {self.fairness_score:.2f}\n"
+        text += f"  Factuality Score: {self.factuality_score:.2f}\n"
+        text += f"  Overall Score:    {self.overall_score:.2f}\n"
+        text += f"  Confidence:       {self.confidence:.2f}\n\n"
+
         text += "-" * 70 + "\n"
         text += f"Transparency Rating: {self.recommendation.value.upper()}\n"
         text += "=" * 70 + "\n"
@@ -485,17 +493,31 @@ class Genesis:
         This is NOT a judgment about the model's quality.
         This is a statement about how CLEAR the model's training was.
         """
-        # In future phases:
-        # - Check if sources_included is well-documented
-        # - Check if sources_excluded is well-documented
-        # - Return TRANSPARENT if both are clear
-        # - Return OPAQUE if unclear
-        # - Return REVIEW_RECOMMENDED if unusual patterns detected
+        # Check if sources_included has any actual populated fields
+        has_included = False
+        if report.sources_included:
+            inc = report.sources_included
+            has_included = any([
+                inc.academic_sources,
+                inc.mainstream_media,
+                inc.government_sources,
+                inc.industry_sources,
+                inc.non_academic_research,
+                inc.activist_sources,
+                inc.contrarian_perspectives,
+                inc.religious_frameworks,
+                inc.other_sources
+            ])
+        
+        # Check if sources_excluded has any actual populated data
+        has_excluded = False
+        if report.sources_excluded:
+            exc = report.sources_excluded
+            has_excluded = bool(exc.categories_excluded or exc.notes)
 
-        # For now (mock):
-        if report.sources_included and report.sources_excluded:
+        if has_included and has_excluded:
             return GenesisRecommendation.TRANSPARENT
-        elif report.sources_included or report.sources_excluded:
+        elif has_included or has_excluded:
             return GenesisRecommendation.REVIEW_RECOMMENDED
         else:
             return GenesisRecommendation.OPAQUE

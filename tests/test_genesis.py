@@ -8,11 +8,7 @@ import pytest
 import os
 from pathlib import Path
 
-# Add Python module to path
-import sys
-sys.path.insert(0, str(Path(__file__).parent))
-
-from genesis import (
+from orionai.genesis import (
     Genesis,
     GenesisReport,
     BiasMetric,
@@ -174,7 +170,7 @@ class TestRecommendationLogic:
         """Test TRANSPARENT recommendation when sources documented"""
         genesis = Genesis("transparent-model")
         # Create mock report with documented sources
-        from genesis import SourceComposition, ExcludedSources
+        from orionai.genesis import SourceComposition, ExcludedSources
         mock_report = type(
             "MockReport",
             (),
@@ -189,7 +185,7 @@ class TestRecommendationLogic:
     def test_recommendation_review_recommended(self):
         """Test REVIEW_RECOMMENDED when partially documented"""
         genesis = Genesis("partial-model")
-        from genesis import SourceComposition
+        from orionai.genesis import SourceComposition, ExcludedSources
         mock_report = type(
             "MockReport",
             (),
@@ -204,7 +200,7 @@ class TestRecommendationLogic:
     def test_recommendation_opaque(self):
         """Test OPAQUE recommendation when sources not documented"""
         genesis = Genesis("opaque-model")
-        from genesis import SourceComposition, ExcludedSources
+        from orionai.genesis import SourceComposition, ExcludedSources
         mock_report = type(
             "MockReport",
             (),
@@ -235,7 +231,7 @@ class TestReportExport:
         # Verify content
         with open(export_path, "r") as f:
             content = f.read()
-            assert "GENESIS MODEL AUDIT REPORT" in content
+            assert "GENESIS MODEL TRANSPARENCY AUDIT" in content
             assert "export-test" in content
 
     def test_export_creates_directory(self, tmp_path):
@@ -258,18 +254,21 @@ class TestReportExport:
             fairness_score=0.80,
             factuality_score=0.70,
             confidence=0.85,
-            recommendation=GenesisRecommendation.CAUTION,
+            recommendation=GenesisRecommendation.REVIEW_RECOMMENDED,
             bias_metrics=[],
             fairness_metrics=[],
             factuality_issues=[],
         )
 
         text = report.to_text()
-        assert "GENESIS MODEL AUDIT REPORT" in text
+        assert "GENESIS MODEL TRANSPARENCY AUDIT" in text
         assert "text-test" in text
-        assert "0.75" in text  # Bias score
-        assert "0.80" in text  # Fairness score
-        assert "CAUTION" in text  # Recommendation
+        assert "Transparency Rating: REVIEW_RECOMMENDED"
+        assert "AUDIT SCORES" in text
+        assert "Bias Score:" in text
+        assert "0.75" in text  # Bias score value
+        assert "Fairness Score:" in text
+        assert "0.80" in text  # Fairness score value
 
 
 class TestGenesisIntegration:
@@ -331,4 +330,4 @@ class TestErrorHandling:
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
+    pytest.main([__file__, "-v", "--cov=orionai.genesis", "--cov-report=term-missing"])

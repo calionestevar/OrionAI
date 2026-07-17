@@ -17,7 +17,7 @@ def disable_transformers():
 @pytest.fixture
 def orion():
     """Create OrionAI instance for testing"""
-    return OrionAI(config_path="../Config/CaseyProtocol.json")
+    return OrionAI()
 
 
 def test_initialization(orion):
@@ -154,7 +154,6 @@ def test_quick_validate_function():
     is_safe, report = validate_ai_output(
         ai_system="TestBot",
         decision="Hello, world!",
-        config_path="../Config/CaseyProtocol.json",
     )
 
     assert is_safe == True

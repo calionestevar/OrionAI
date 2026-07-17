@@ -499,6 +499,9 @@ class OrionAI:
         print(f"   Triggered Rules: {len(report.triggered_rules)}")
 
         # Write to quarantine log
+        output_dir = os.path.dirname("OrionAI_Quarantine.txt")
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
         with open("OrionAI_Quarantine.txt", "a") as f:
             f.write(
                 f"[{report.timestamp}] QUARANTINED: {report.ai_system} - "
@@ -520,6 +523,9 @@ class OrionAI:
         print("=" * 50)
 
         # Write to safe mode log
+        output_dir = os.path.dirname("OrionAI_SafeMode.txt")
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
         with open("OrionAI_SafeMode.txt", "a") as f:
             f.write(f"[{datetime.now()}] BUY MORE COVER ACTIVATED\n")
             f.write(f"Reason: {reason}\n")
@@ -546,6 +552,9 @@ class OrionAI:
         log_entry = f"[MORGAN MODE] [{datetime.now()}] {message}"
         print(log_entry)
 
+        output_dir = os.path.dirname("OrionAI_MorganMode.txt")
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
         with open("OrionAI_MorganMode.txt", "a") as f:
             f.write(log_entry + "\n")
 
@@ -602,7 +611,9 @@ class OrionAI:
 
 # Convenience functions for quick use
 def validate_ai_output(
-    ai_system: str, decision: str, config_path: str = "Config/CaseyProtocol.json"
+    ai_system: str,
+    decision: str,
+    config_path: Optional[str] = None
 ) -> Tuple[bool, ValidationReport]:
     """
     Quick validation function - validates a single AI output
